@@ -29,7 +29,8 @@
         }
     ],
     "dependencies": {
-        "node-red": "1.2.7"
+        "node-red": "1.2.7",
+        "node-red-contrib-opcua": "0.2.95"
     },
     "engines": {
         "node": ">=10"
