@@ -1,6 +1,7 @@
 ARG ARCH=amd64
 ARG NODE_VERSION=12
 ARG OS=alpine
+ARG NODE_RED_VERSION=1.2.7
 
 #### Stage BASE ########################################################################################################
 FROM ${ARCH}/node:${NODE_VERSION}-${OS} AS base
@@ -45,10 +46,10 @@ RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python
 
 #### Stage RELEASE #####################################################################################################
 FROM base AS RELEASE
-ARG BUILD_DATE
+ARG BUILD_DATE="$(date +"%Y-%m-%dT%H:%M:%SZ")"
 ARG BUILD_VERSION
 ARG BUILD_REF
-ARG NODE_RED_VERSION
+ARG NODE_RED_VERSION=
 ARG ARCH
 ARG TAG_SUFFIX=default
 
