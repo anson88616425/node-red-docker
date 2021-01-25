@@ -35,7 +35,7 @@ WORKDIR /usr/src/node-red
 
 # package.json contains Node-RED NPM module and node dependencies
 COPY package.json .
-COPY flows.json /data
+COPY flows-device-data.json /data
 
 #### Stage BUILD #######################################################################################################
 FROM base AS build
@@ -80,7 +80,7 @@ USER node-red
 # Env variables
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules \
-    FLOWS=flows.json
+    FLOWS=flows-device-data.json
 
 # ENV NODE_RED_ENABLE_SAFE_MODE=true    # Uncomment to enable safe start mode (flows not running)
 # ENV NODE_RED_ENABLE_PROJECTS=true     # Uncomment to enable projects option
