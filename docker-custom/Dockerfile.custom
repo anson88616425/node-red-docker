@@ -8,7 +8,11 @@ FROM ${ARCH}/node:${NODE_VERSION}-${OS} AS base
 
 # Copy scripts
 COPY scripts/*.sh /tmp/
-
+RUN ls /tmp
+RUN cd /tmp && pwd
+RUN chmod +x /tmp/removenativegpio.sh
+RUN sed -i 's/dl-cdn.alpinelinux.org/mirrors.aliyun.com/g' /etc/apk/repositories
+RUN /tmp/removenativegpio.sh
 # Install tools, create Node-RED app and data dir, add user and set rights
 RUN set -ex && \
     apk add --no-cache \
@@ -39,9 +43,10 @@ COPY flows.json /data
 FROM base AS build
 
 # Install Build tools
+RUN npm config set registry https://registry.npm.taobao.org
 RUN apk add --no-cache --virtual buildtools build-base linux-headers udev python && \
     npm install --unsafe-perm --no-update-notifier --no-fund --only=production && \
-    /tmp/remove_native_gpio.sh && \
+    /tmp/removenativegpio.sh && \
     cp -R node_modules prod_node_modules
 
 #### Stage RELEASE #####################################################################################################
@@ -70,7 +75,7 @@ COPY --from=build /usr/src/node-red/prod_node_modules ./node_modules
 
 # Chown, install devtools & Clean up
 RUN chown -R node-red:root /usr/src/node-red && \
-    /tmp/install_devtools.sh && \
+    /tmp/installdevtools.sh && \
     rm -r /tmp/*
 
 USER node-red
@@ -79,7 +84,6 @@ USER node-red
 ENV NODE_RED_VERSION=$NODE_RED_VERSION \
     NODE_PATH=/usr/src/node-red/node_modules:/data/node_modules \
     FLOWS=flows.json
-
 # ENV NODE_RED_ENABLE_SAFE_MODE=true    # Uncomment to enable safe start mode (flows not running)
 # ENV NODE_RED_ENABLE_PROJECTS=true     # Uncomment to enable projects option
 
@@ -88,5 +92,4 @@ EXPOSE 1880
 
 # Add a healthcheck (default every 30 secs)
 # HEALTHCHECK CMD curl http://localhost:1880/ || exit 1
-
 ENTRYPOINT ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
