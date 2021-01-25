@@ -31,6 +31,9 @@
     "dependencies": {
         "node-red": "1.2.7",
         "node-red-contrib-opcua": "0.2.95"
+        "node-red-contrib-influxdb": "^0.5.4",
+        "@meowwolf/node-red-contrib-amqp": "^1.2.0"
+
     },
     "engines": {
         "node": ">=10"
