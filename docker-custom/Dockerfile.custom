@@ -8,6 +8,8 @@ FROM ${ARCH}/node:${NODE_VERSION}-${OS} AS base
 
 # Copy scripts
 COPY scripts/*.sh /tmp/
+RUN chmod +x /tmp/install_devtools.sh
+RUN chmod +x /tmp/remove_native_gpio.sh
 
 # Install tools, create Node-RED app and data dir, add user and set rights
 RUN set -ex && \
