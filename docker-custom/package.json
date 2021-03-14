@@ -33,7 +33,8 @@
         "node-red-contrib-opcua": "0.2.95",
         "node-red-contrib-influxdb": "^0.5.4",
         "node-red-node-mysql": "0.1.1",
-        "@meowwolf/node-red-contrib-amqp": "^1.2.0"
+        "@meowwolf/node-red-contrib-amqp": "^1.2.0",
+        "node-red-contrib-amqp-docker":"0.0.2"
 
     },
     "engines": {
