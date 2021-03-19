@@ -1,7 +1,7 @@
 ARG ARCH=amd64
 ARG NODE_VERSION=12
 ARG OS=alpine
-ARG NODE_RED_VERSION=1.2.7
+ARG NODE_RED_VERSION=1.2.9
 
 #### Stage BASE ########################################################################################################
 FROM ${ARCH}/node:${NODE_VERSION}-${OS} AS base
