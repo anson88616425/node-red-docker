@@ -17,8 +17,7 @@ RUN set -ex && \
         wget \
         git \
         openssl \
-        openssh-client \
-        ca-certificates && \
+        openssh-client && \
     mkdir -p /usr/src/node-red /data && \
     deluser --remove-home node && \
     # adduser --home /usr/src/node-red --disabled-password --no-create-home node-red --uid 1000 && \
