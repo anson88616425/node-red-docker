@@ -91,9 +91,5 @@ EXPOSE 1880
 # Add a healthcheck (default every 30 secs)
 # HEALTHCHECK CMD curl http://localhost:1880/ || exit 1
 
-#暴露credentialSecret启动时能指定
-module.exports = {
-  credentialSecret: process.env.NODE_RED_CREDENTIAL_SECRET // add exactly this
-}
 
 ENTRYPOINT ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
