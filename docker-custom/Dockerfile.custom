@@ -94,4 +94,4 @@ EXPOSE 1880
 
 ENTRYPOINT ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
 #替换标题
-ENTRYPOINT ["sed","-i","s#title: \"Node-RED\"#title: \"zsbonc\"#g" /usr/src/node-red/node_modules/@node-red/editor-api/lib/editor/theme.js"]
+ENTRYPOINT ["sed","-i","s#title: "Node-RED"#title: "zsbonc"#g" /usr/src/node-red/node_modules/@node-red/editor-api/lib/editor/theme.js"]
