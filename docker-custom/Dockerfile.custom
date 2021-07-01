@@ -91,4 +91,4 @@ EXPOSE 1880
 # Add a healthcheck (default every 30 secs)
 # HEALTHCHECK CMD curl http://localhost:1880/ || exit 1
 
-CMD sed -i "s#title: \"Node-RED\"#title: \"zsbonc\"#g" /usr/src/node-red/node_modules/@node-red/editor-api/lib/editor/theme.js && npm start --cache /data/.npm --userDir /data
+CMD sed -i "s#title: \"Node-RED\"#title: \"zsbonc\"#g" /usr/src/node-red/node_modules/@node-red/editor-api/lib/editor/theme.js && npm start --cache /data/.npm -- --userDir /data
