@@ -91,7 +91,8 @@ EXPOSE 1880
 # Add a healthcheck (default every 30 secs)
 # HEALTHCHECK CMD curl http://localhost:1880/ || exit 1
 
-
+COPY init.sh /usr/local/bin/
+RUN chmod +x /usr/local/bin/init.sh
+ENTRYPOINT ["init.sh"]
 ENTRYPOINT ["npm", "start", "--cache", "/data/.npm", "--", "--userDir", "/data"]
-#替换标题
-ENTRYPOINT ["sed","-i","s#title: "Node-RED"#title: "zsbonc"#g" /usr/src/node-red/node_modules/@node-red/editor-api/lib/editor/theme.js"]
+
